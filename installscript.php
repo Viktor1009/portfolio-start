@@ -6,6 +6,7 @@
         exit();
     } else {
         displayMsg("success", "Connected");
+        
     }
     /**
      * Här vill jag att ni fortsätter, ni ska
