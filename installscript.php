@@ -43,6 +43,7 @@
     }
     $conn->close();
 
+
     function makeEnv(){
         $env = [
             'DB_HOST' => $_POST["host"],
@@ -63,6 +64,6 @@
             echo "Något knas";
         }
 
-        echo '<a href="/"> Gå tillbaka</a>';
+        echo '<a href="/dash/index.php">Gå till Dashboard</a>';
     }
 ?>

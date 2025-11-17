@@ -8,7 +8,7 @@
     if($result->num_rows > 0){
         while($row = $result->fetch_assoc()){ ?>
             <a href="project.php?id=<?php echo $row["project_id"]; ?>">
-                <?php echo $row["namn"];?>
+                <?php echo $row["project_name"];?>
             </a>
         <?php
         }
