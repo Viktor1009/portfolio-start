@@ -1,6 +1,6 @@
 <?php include("../templates/header.php"); ?>
-    hejhej
-    <a href="add.php">add</a>
+    
+    <a href="index.php">index</a>
 
     <?php
     $sql = "SELECT * FROM project WHERE project_id=" . $_GET["id"];

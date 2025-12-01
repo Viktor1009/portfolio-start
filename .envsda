@@ -1,5 +1,5 @@
 DB_HOST=localhost
 DB_PORT=3306
-DB_DATABASE=portfoliotest1
+DB_DATABASE=portfoliotest11
 DB_USER=root
 DB_PASSWORD=

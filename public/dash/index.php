@@ -10,6 +10,9 @@
             <a href="project.php?id=<?php echo $row["project_id"]; ?>">
                 <?php echo $row["project_name"];?>
             </a>
+            <a href="update.php?id=<?php echo $row["project_id"]; ?>">
+                <?php echo $row["project_name"]; ?> Update
+            </a>
         <?php
         }
     }
