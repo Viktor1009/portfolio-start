@@ -1,3 +1,4 @@
+<a href="index.php">index</a>
 <main id="add">
     <form method="post">
         <p>add</p>
@@ -8,4 +9,3 @@
         <input class="btn btn-primary" type="submit" name="send">
     </form>
 </main>
-    

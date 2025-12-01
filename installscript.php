@@ -43,6 +43,15 @@
     }
     $conn->close();
 
+     function makeTabel($conn, $sql, $name) {
+        try {
+            $conn->query($sql);
+            displayMsg("success", "Tabel " . $name . " created successfully");
+        } catch(mysqli_sql_exception $e){
+            displayMsg("error",  $name . " already exists");
+        }
+    }
+
 
     function makeEnv(){
         $env = [
