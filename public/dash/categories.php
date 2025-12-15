@@ -1,27 +1,35 @@
 <?php include("../templates/header.php"); ?>
+    
+    <a href="index.php">index</a>
 
-<?php
+    <?php
+
     if($_POST){
         require("../../conn.php");
-        if($_POST["posttype"] == "new_cat"){
-            echo "new_cat";
+        if($_POST["posttype"] == "Cat_Update"){
+            echo "Update";
 
-            $stmt = $conn->prepare("INSERT INTO categories (cat_name) VALUES (?)");
-            $stmt->bind_param("s", $_POST["name"]);
-            $stmt->execute(); /* Lägg även till ett till s vid bind params och en ? vid VALUES när du lägger till thumbnail*/
-            $conn->close();
-        } 
+            $sql = "UPDATE categories SET cat_name = ? WHERE cat_id = ?";
+            $stmt = $conn->prepare($sql);
+            $stmt->bind_param("si", $_POST["update_name"], $_POST["update_id"]);
+            $stmt->execute();
+            $stmt->close();
+        }
     }
-    ?>
-
-<a href="index.php">index</a>
-<main id="add_cat">
-    <form method="POST">
-        <p>add categories</p>
-        <input type="text" name="name" placeholder="name">
-        <input class="btn btn-primary" type="submit" value="new_cat" name="posttype">
-    </form>
-
     
-</main>
+    $sql = "SELECT * FROM categories WHERE cat_id=" . $_GET["id"];
+    $result = $conn->query($sql);
+    if($result->num_rows > 0){
+        while($row = $result->fetch_assoc()){ ?>
+            <form method="post" enctype="multipart/form-data">
+                <input type="text" name="update_id" value="<?php echo $row["cat_id"]?>" hidden>
+                <input type="text" name="update_name" placeholder="name" value="<?php echo $row["cat_name"];?>">
+                <input class="btn btn-primary" type="submit" name="posttype" value="Cat_Update">
+            </form>
+        <?php
+        }   
+    }
+    $conn->close();
+    ?> 
+    
 <?php include("../templates/footer.php"); ?>
