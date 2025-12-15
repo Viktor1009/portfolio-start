@@ -1,24 +1,27 @@
 <?php include("../templates/header.php"); ?>
-    <a href="index.php">index</a>
-    <h4>Categories</h4>
 
-    <?php // visar upp Kategorier 
+<?php
+    if($_POST){
+        require("../../conn.php");
+        if($_POST["posttype"] == "new_cat"){
+            echo "new_cat";
 
-    $sql = "SELECT * FROM categories";
-    $result = $conn->query($sql);
-    if($result->num_rows > 0){
-        while($row = $result->fetch_assoc()){ ?>
-            <a href="project.php?id=<?php echo $row["cat_id"]; ?>">
-                <?php echo $row["cat_name"];?>
-            </a>
-        <?php
-        }
+            $stmt = $conn->prepare("INSERT INTO categories (cat_name) VALUES (?)");
+            $stmt->bind_param("s", $_POST["name"]);
+            $stmt->execute(); /* Lägg även till ett till s vid bind params och en ? vid VALUES när du lägger till thumbnail*/
+            $conn->close();
+        } 
     }
     ?>
 
-    <h4>Create Categories</h4>
-    <input type="text" name="categorie" placeholder="categorie">
-    <input type="submit" class="btn btn-primary" name=""> <!-- Ge name ett bra namn
-   
+<a href="index.php">index</a>
+<main id="add_cat">
+    <form method="POST">
+        <p>add categories</p>
+        <input type="text" name="name" placeholder="name">
+        <input class="btn btn-primary" type="submit" value="new_cat" name="posttype">
+    </form>
+
     
+</main>
 <?php include("../templates/footer.php"); ?>

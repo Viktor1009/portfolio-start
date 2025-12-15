@@ -1,6 +1,7 @@
 <?php include("../templates/header.php"); ?>
     hejhej
-    <a href="add.php">add</a>
+    <a href="add.php">Add</a>
+    <a href="categories.php">Categories</a>
 
     <?php
     $sql = "SELECT * FROM project";
