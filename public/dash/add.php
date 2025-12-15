@@ -1,3 +1,4 @@
+<?php include("../templates/header.php"); ?>
 <a href="index.php">index</a>
 <main id="add">
     <form method="POST">
@@ -23,3 +24,4 @@
     }
     ?>
 </main>
+<?php include("../templates/footer.php"); ?>

@@ -1,4 +1,4 @@
-<?php include("../templates/header.php"); ?>
+<?php include("templates/header.php"); ?>
     
     <a href="index.php">index</a>
 
@@ -15,4 +15,4 @@
     }
     ?> 
     
-<?php include("../templates/footer.php"); ?>
+<?php include("templates/footer.php"); ?>

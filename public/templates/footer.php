@@ -1,9 +1,7 @@
 <?php
-    if($conn) {
-        $conn->close();
-    }
-    
-
+/*
+    if($conn) { $conn->close(); }
+*/
 ?>
 
 <footer>
