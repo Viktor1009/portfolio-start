@@ -1,7 +1,7 @@
 <?php include("templates/header.php"); ?>
     
+    <a href="dash/index.php">Private Interface</a>
     hejhej
-    <a href="add.php">add</a>
 
     <?php
     $sql = "SELECT * FROM project";

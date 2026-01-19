@@ -2,7 +2,7 @@
 <main id="install">
     <?php 
     if(isset($_POST["install"])){
-        require_once("../../installscript.php");
+        require_once("../../installScript.php");
     }
     ?>
 </main>

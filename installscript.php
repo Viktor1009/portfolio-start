@@ -25,7 +25,7 @@
     } else {
         displayMsg("success", "Make Tables");
     
-        include_once("../../template/createtable.php");
+        include_once("../../prefabs/createTable.php");
 
         $conn->query("INSERT INTO project (project_name, project_info) VALUES ('testproject', 'testinfo')");
         $conn->query("INSERT INTO info (person_name, person_mail, person_about, person_welcome) VALUES 

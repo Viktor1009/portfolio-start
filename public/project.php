@@ -9,6 +9,7 @@
         while($row = $result->fetch_assoc()){ ?>
                 <?php echo $row["project_name"];?>
                 <?php echo $row["project_info"];?>
+                <?php echo $row["project_link"];?>
                 <?php echo $row["project_thumbnail"];?>
         <?php
         }   

@@ -11,6 +11,7 @@
     )";
     makeTabel($conn, $sql, "project");
 
+
     $sql = "CREATE TABLE IF NOT EXISTS image (
     project_id INT NOT NULL,
     image_id INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
@@ -18,17 +19,20 @@
     )";
     makeTabel($conn, $sql, "images");
     
+
     $sql = "CREATE TABLE IF NOT EXISTS categories (
     cat_id INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
     cat_name VARCHAR(100) NOT NULL
     )";
     makeTabel($conn, $sql, "categories");
 
+
     $sql = "CREATE TABLE IF NOT EXISTS categories_relations (
     cat_id INT NOT NULL,
     project_id INT NOT NULL
     )";
     makeTabel($conn, $sql, "categories_relations");
+
 
     $sql = "CREATE TABLE IF NOT EXISTS info (
     person_name VARCHAR(50) NOT NULL,
@@ -41,6 +45,7 @@
     )"; 
     makeTabel($conn, $sql, "info");
 
+    
     $sql = "CREATE TABLE IF NOT EXISTS user (
     login_username VARCHAR(100),
     login_password VARCHAR(100),

@@ -28,6 +28,19 @@
             </form>
         <?php
         }   
+        /* 
+        <form action="" method="POST">
+                <input type="text" name="id" value="<?php echo $row["_id"];?>" hidden>
+                <input type="submit" name="posttype" value="X">
+            </form>
+            $sql = "DELETE FROM pizzas WHERE _id = ?";
+            $stmt = $conn->prepare($sql);
+            $stmt->bind_param("s", $_POST["id"]);
+            $stmt->execute();
+            $stmt->close();
+            $conn->close();
+        
+        */
     }
     $conn->close();
     ?> 
