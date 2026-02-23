@@ -1,12 +1,12 @@
 <?php
-
-
 function displayMsg($type, $string){
     echo " <div class='alert alert-{$type}' role='alert'>
                 <p>{$string}</p>
             </div>
         ";
 }
+?>
+<?php
 function uploadImg($i, $conn, $project_id){
     $target_dir = "../uploads/";
     $target_file = $target_dir . basename($_FILES["files"]["name"][$i]);
@@ -49,7 +49,7 @@ function uploadImg($i, $conn, $project_id){
         echo "Sorry, your file is too large.";
         $uploadOk = 0;
     }
-// Allow certain file formats
+    // Allow certain file formats
     if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
     && $imageFileType != "gif" )
     {
@@ -80,5 +80,47 @@ function uploadImg($i, $conn, $project_id){
     }
     return $target_file;
 }
+?>
+<?php
+function createThumbnail($sourcePath){
+    $pathInfo = pathinfo($sourcePath);
+    $destPath = $pathInfo['dirname'] . "/" . $pathInfo['filename'] . "-thumb." . $pathInfo['extension'];
 
+    $imageInfo = getimagesize($sourcePath);
+    if (!$imageInfo) return false;
+
+    $mime = $imageInfo['mime'];
+    $im = null;
+
+    switch ($mime) {
+        case 'image/jpeg':
+            $im = imagecreatefromjpeg($sourcePath);
+            break;
+        case 'image/png':
+            $im = imagecreatefrompng($sourcePath);
+            break;
+        default:
+            return false;
+    }
+
+    if ($im) {
+        $size = min(imagesx($im), imagesy($im));
+        $im2 = imagecrop($im, ['x' => 0, 'y' => 0, 'width' => $size, 'height' => $size]);
+
+        if ($im2 !== FALSE) {
+            // Spara den nya bilden beroende på filtyp
+            switch ($mime) {
+                case 'image/jpeg':
+                    imagejpeg($im2, $destPath);
+                    break;
+                case 'image/png':
+                    imagepng($im2, $destPath);
+                    break;
+            }
+            imagedestroy($im2); // Städa upp minnet
+        }
+        imagedestroy($im); // Städa upp minnet
+    }
+    return $destPath;
+}
 ?>
