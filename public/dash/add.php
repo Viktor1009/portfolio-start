@@ -29,7 +29,17 @@ if($_POST){
             if($_FILES){
                 foreach($_FILES["files"]["name"] as $i => $key){
                     if(!empty($_FILES["files"]["name"][$i])){
-                        uploadImg($i, $conn, $last_project_id);
+                        $uploadedFilePath = uploadImg($i, $conn, $last_project_id);
+
+                        if($i === 0 && $uploadedFilePath) {
+                            $thumbPath = createThumbnail($uploadedFilePath);
+                            echo "Thumbnail skapad: " . $thumbPath . "<br>";
+                            
+                            $stmtThumb = $conn->prepare("UPDATE project SET project_thumb = ? WHERE project_id = ?");
+                            $stmtThumb->bind_param("si", $thumbPath, $last_project_id);
+                            $stmtThumb->execute();
+                            $stmtThumb->close();
+                        }
                     }
                 }   
             }
